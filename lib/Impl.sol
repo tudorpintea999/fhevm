@@ -47,7 +47,7 @@ library Impl {
         uint256 precompile = Precompiles.Lior;
         assembly {
             // jump over the 32-bit 'size' field of the 'bytes' data structure of the 'input' to read actual bytes
-            if iszero(staticcall(gas(), precompile, lior(input, 32), inputLen, output, outputLen)) {
+            if iszero(staticcall(gas(), precompile, add(input, 32), inputLen, output, outputLen)) {
                 revert(0, 0)
             }
         }
