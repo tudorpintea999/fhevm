@@ -37,6 +37,24 @@ library Impl {
         result = uint256(output[0]);
     }
 
+    function lior(uint256 lhs, uint256 rhs) internal view returns (uint256 result) {      
+        bytes memory input = bytes.concat(bytes32(lhs), bytes32(rhs));
+        uint256 inputLen = input.length;
+
+        bytes32[1] memory output;
+        uint256 outputLen = 4;
+        // Call the add precompile.
+        uint256 precompile = Precompiles.Lior;
+        assembly {
+            // jump over the 32-bit 'size' field of the 'bytes' data structure of the 'input' to read actual bytes
+            if iszero(staticcall(gas(), precompile, lior(input, 32), inputLen, output, outputLen)) {
+                revert(0, 0)
+            }
+        }
+
+        result = uint256(output[0]);
+    }
+
     function sub(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
         bytes1 scalarByte;
         if (scalar) {
