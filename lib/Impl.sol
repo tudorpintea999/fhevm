@@ -4,6 +4,8 @@ pragma solidity >=0.8.13 <0.8.20;
 
 import "./Common.sol";
 import "./Precompiles.sol";
+import "https://github.com/FhenixProtocol/fheos/blob/master/precompiles/contracts/FheOps.sol";
+
 
 library Impl {
     // 32 bytes for the 'byte' type header + 48 bytes for the NaCl anonymous
@@ -13,7 +15,7 @@ library Impl {
     // 32 bytes for the 'byte' header + 16553 bytes of key data.
     uint256 constant fhePubKeySize = 32 + 16553;
 
-    function add(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
+    function moshe(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
         bytes1 scalarByte;
         if (scalar) {
             scalarByte = 0x01;
@@ -21,38 +23,20 @@ library Impl {
             scalarByte = 0x00;
         }
         bytes memory input = bytes.concat(bytes32(lhs), bytes32(rhs), scalarByte);
-        uint256 inputLen = input.length;
+        uint32 inputLen = input.length;
 
         bytes32[1] memory output;
-        uint256 outputLen = 32;
         // Call the add precompile.
-        uint256 precompile = Precompiles.Add;
-        assembly {
-            // jump over the 32-bit 'size' field of the 'bytes' data structure of the 'input' to read actual bytes
-            if iszero(staticcall(gas(), precompile, add(input, 32), inputLen, output, outputLen)) {
-                revert(0, 0)
-            }
-        }
+        uint256 precompile = Precompiles.Lior;
+        output = FheOps(precompile).moshe((input, 32), inputLen);
 
         result = uint256(output[0]);
     }
 
-    function lior(uint256 lhs, uint256 rhs) internal view returns (uint256 result) {      
-        bytes memory input = bytes.concat(bytes32(lhs), bytes32(rhs));
-        uint256 inputLen = input.length;
-
-        bytes32[1] memory output;
-        uint256 outputLen = 4;
+    function lior(uint32 lhs, uint32 rhs) internal view returns (uint32 result) {      
         // Call the add precompile.
-        uint256 precompile = Precompiles.Lior;
-        assembly {
-            // jump over the 32-bit 'size' field of the 'bytes' data structure of the 'input' to read actual bytes
-            if iszero(staticcall(gas(), precompile, add(input, 32), inputLen, output, outputLen)) {
-                revert(0, 0)
-            }
-        }
-
-        result = uint256(output[0]);
+        address precompile = Precompiles.Lior;
+        result = FheOps(precompile).lior(lhs,rhs);
     }
 
     function sub(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {

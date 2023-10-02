@@ -26,19 +26,19 @@ library TFHE {
     }
 
     // Evaluate add(a, b) and return the result.
-    function add(euint8 a, euint8 b) internal view returns (euint8) {
+    function moshe(euint8 a, euint8 b) internal view returns (euint8) {
         if (!isInitialized(a)) {
             a = asEuint8(0);
         }
         if (!isInitialized(b)) {
             b = asEuint8(0);
         }
-        return euint8.wrap(Impl.add(euint8.unwrap(a), euint8.unwrap(b), false));
+        return euint8.wrap(Impl.moshe(euint8.unwrap(a), euint8.unwrap(b), false));
     }
 
       // Evaluate add(a, b) and return the result.
     function lior(uint32 a, uint32 b) internal view returns (uint256) {
-        return Impl.lior(uint256(a), uint256(b));
+        return Impl.lior(a, b);
     }
 
     // Evaluate sub(a, b) and return the result.
