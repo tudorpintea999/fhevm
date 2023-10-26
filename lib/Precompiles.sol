@@ -3,8 +3,8 @@
 pragma solidity >=0.8.13 <0.8.20;
 
 library Precompiles {
+    address public constant Fheos = address(128);
     uint256 public constant Add = 65;
-    uint256 public constant Lior = 80;
     uint256 public constant Verify = 66;
     uint256 public constant Reencrypt = 67;
     uint256 public constant FhePubKey = 68;
