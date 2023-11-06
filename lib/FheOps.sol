@@ -2,6 +2,10 @@
 
 pragma solidity >=0.4.21 <0.9.0;
 
+// An interface describing the internal implementation of each function.abi
+// input - A serialized represenation of the input (Concatenated inputs)
+// inputLen - The length in bytes of input
+
 interface FheOps {
     function add(bytes memory input, uint32 inputLen) external view returns (bytes memory);
 
