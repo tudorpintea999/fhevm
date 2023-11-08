@@ -25,21 +25,7 @@ library Impl {
         }
     }
 
-    function bytes32ArrayToBytes(bytes32[2] memory input) internal pure returns (bytes memory) {
-        bytes memory output = new bytes(64); // 32 bytes per element, 2 elements
-        uint256 dest = 0;
-
-        for (uint256 i = 0; i < 2; i++) {
-            for (uint256 j = 0; j < 32; j++) {
-                output[dest] = input[i][j];
-                dest++;
-            }
-        }
-
-        return output;
-    }
-
-    function math_helper(
+    function mathHelper(
         uint256 lhs,
         uint256 rhs,
         bool scalar,
@@ -62,23 +48,23 @@ library Impl {
     }
 
     function add(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
-        result = math_helper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).add);
+        result = mathHelper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).add);
     }
 
     function sub(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
-        result = math_helper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).sub);
+        result = mathHelper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).sub);
     }
 
     function mul(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
-        result = math_helper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).mul);
+        result = mathHelper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).mul);
     }
 
     function le(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
-        result = math_helper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).lte);
+        result = mathHelper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).lte);
     }
 
     function lt(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
-        result = math_helper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).lt);
+        result = mathHelper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).lt);
     }
 
     function optReq(uint256 ciphertext) internal view {
@@ -96,7 +82,7 @@ library Impl {
         uint32 inputLen = 64;
 
         // Call the reencrypt precompile.
-        reencrypted = FheOps(Precompiles.Fheos).reencrypt(bytes32ArrayToBytes(input), inputLen);
+        reencrypted = FheOps(Precompiles.Fheos).reencrypt(bytes.concat(input[0], input[1]), inputLen);
 
         return reencrypted;
     }
