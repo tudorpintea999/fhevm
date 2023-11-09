@@ -25,7 +25,6 @@ library TFHE {
         return euint32.unwrap(v) != 0;
     }
 
-    // Evaluate add(a, b) and return the result.
     function add(euint8 a, euint8 b) internal view returns (euint8) {
         if (!isInitialized(a)) {
             a = asEuint8(0);
@@ -1124,7 +1123,7 @@ library TFHE {
         return euint16.wrap(Impl.max(euint16.unwrap(a), euint16.unwrap(b), false));
     }
 
-    // Evaluate add(a, b) and return the result.
+    // // Evaluate add(a, b) and return the result.
     function add(euint16 a, euint32 b) internal view returns (euint32) {
         if (!isInitialized(a)) {
             a = asEuint16(0);
