@@ -67,12 +67,12 @@ library Impl {
         result = mathHelper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).lt);
     }
 
-    function optReq(uint256 ciphertext) internal view {
+    function req(uint256 ciphertext) internal view {
         bytes memory input = bytes.concat(bytes32(ciphertext));
         uint32 inputLen = 32;
 
         // Call the optimistic require precompile.
-        FheOps(Precompiles.Fheos).optReq(input, inputLen);
+        FheOps(Precompiles.Fheos).req(input, inputLen);
     }
 
     function reencrypt(uint256 ciphertext, bytes32 publicKey) internal view returns (bytes memory reencrypted) {
@@ -116,6 +116,18 @@ library Impl {
 
         // Call the trivialEncrypt precompile.
         output = FheOps(Precompiles.Fheos).trivialEncrypt(input);
+
+        result = getValue(output);
+    }
+
+    function cmux(uint256 control, uint256 ifTrue, uint256 ifFalse) internal view returns (uint256 result) {
+        bytes memory input = bytes.concat(bytes32(control), bytes32(ifTrue), bytes32(ifFalse));
+        uint32 inputLen = uint32(input.length);
+
+        bytes memory output;
+
+        // Call the trivialEncrypt precompile.
+        output = FheOps(Precompiles.Fheos).cmux(input, inputLen);
 
         result = getValue(output);
     }
@@ -196,10 +208,6 @@ library Impl {
     }
 
     function rand(uint8) internal view returns (uint256) {
-        return 0;
-    }
-
-    function cmux(uint256, uint256, uint256) internal view returns (uint256) {
         return 0;
     }
 }

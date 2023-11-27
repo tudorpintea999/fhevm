@@ -2267,20 +2267,20 @@ library TFHE {
 
     // If 'control''s value is 'true', the result has the same value as 'a'.
     // If 'control''s value is 'false', the result has the same value as 'b'.
-    function cmux(ebool control, euint8 a, euint8 b) internal view returns (euint8) {
+    function selector(ebool control, euint8 a, euint8 b) internal view returns (euint8) {
         return euint8.wrap(Impl.cmux(ebool.unwrap(control), euint8.unwrap(a), euint8.unwrap(b)));
     }
 
     // If 'control's value is 'true', the result has the same value as 'a'.
     // If 'control's value is 'false', the result has the same value as 'b'.
-    function cmux(ebool control, euint16 a, euint16 b) internal view returns (euint16) {
+    function selector(ebool control, euint16 a, euint16 b) internal view returns (euint16) {
         euint16 ctrl = asEuint16(asEuint8(control));
         return euint16.wrap(Impl.cmux(euint16.unwrap(ctrl), euint16.unwrap(a), euint16.unwrap(b)));
     }
 
     // If 'control's value is 'true', the result has the same value as 'a'.
     // If 'control's value is 'false', the result has the same value as 'b'.
-    function cmux(ebool control, euint32 a, euint32 b) internal view returns (euint32) {
+    function selector(ebool control, euint32 a, euint32 b) internal view returns (euint32) {
         euint32 ctrl = asEuint32(asEuint8(control));
         return euint32.wrap(Impl.cmux(euint32.unwrap(ctrl), euint32.unwrap(a), euint32.unwrap(b)));
     }
@@ -2467,28 +2467,8 @@ library TFHE {
         return euint32.wrap(Impl.not(euint32.unwrap(value)));
     }
 
-    // Optimistically require that 'b' is true.
-    //
-    // This function does not evaluate 'b' at the time of the call.
-    // Instead, it accumulates all optimistic requires and evaluates a single combined
-    // require at the end of the transaction. A side effect of this mechanism
-    // is that a method call with a failed optimistic require will always incur the full
-    // gas cost, as if all optimistic requires were true. Yet, the transaction will be
-    // reverted at the end if any of the optimisic requires were false.
-    //
-    // Exceptions to above rule are reencryptions and decryptions via
-    // TFHE.reencrypt(), respectively. If either of them
-    // are encountered and if optimistic requires have been used before in the
-    // txn, the optimisic requires will be immediately evaluated. Rationale is
-    // that we want to avoid decrypting or reencrypting a value if the txn is about
-    // to fail and be reverted anyway at the end. Checking immediately and reverting on the spot
-    // would avoid unnecessary decryptions.
-    //
-    // The benefit of optimistic requires is that they are faster than non-optimistic ones,
-    // because there is a single call to the decryption oracle per transaction, irrespective
-    // of how many optimistic requires were used.
-    function optReq(ebool b) internal view {
-        Impl.optReq(ebool.unwrap(b));
+    function req(ebool b) internal view {
+        Impl.req(ebool.unwrap(b));
     }
 
     // Converts an 'ebool' to an 'euint8'.
