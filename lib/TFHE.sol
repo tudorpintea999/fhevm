@@ -2375,11 +2375,6 @@ library TFHE {
         }
     }
 
-    // Decrypts the encrypted 'value'.
-    function decrypt(euint8 value) internal view returns (uint8) {
-        return uint8(Impl.decrypt(euint8.unwrap(value)));
-    }
-
     // Return the negation of 'value'.
     function neg(euint8 value) internal view returns (euint8) {
         return euint8.wrap(Impl.neg(euint8.unwrap(value)));
@@ -2419,11 +2414,6 @@ library TFHE {
         } else {
             return Impl.reencrypt(euint16.unwrap(asEuint16(defaultValue)), publicKey);
         }
-    }
-
-    // Decrypts the encrypted 'value'.
-    function decrypt(euint16 value) internal view returns (uint16) {
-        return uint16(Impl.decrypt(euint16.unwrap(value)));
     }
 
     // Return the negation of 'value'.
@@ -2467,11 +2457,6 @@ library TFHE {
         }
     }
 
-    // Decrypts the encrypted 'value'.
-    function decrypt(euint32 value) internal view returns (uint32) {
-        return uint32(Impl.decrypt(euint32.unwrap(value)));
-    }
-
     // Return the negation of 'value'.
     function neg(euint32 value) internal view returns (euint32) {
         return euint32.wrap(Impl.neg(euint32.unwrap(value)));
@@ -2492,7 +2477,7 @@ library TFHE {
     // reverted at the end if any of the optimisic requires were false.
     //
     // Exceptions to above rule are reencryptions and decryptions via
-    // TFHE.reencrypt() and TFHE.decrypt(), respectively. If either of them
+    // TFHE.reencrypt(), respectively. If either of them
     // are encountered and if optimistic requires have been used before in the
     // txn, the optimisic requires will be immediately evaluated. Rationale is
     // that we want to avoid decrypting or reencrypting a value if the txn is about
@@ -2504,11 +2489,6 @@ library TFHE {
     // of how many optimistic requires were used.
     function optReq(ebool b) internal view {
         Impl.optReq(ebool.unwrap(b));
-    }
-
-    // Decrypts the encrypted 'value'.
-    function decrypt(ebool value) internal view returns (bool) {
-        return (Impl.decrypt(ebool.unwrap(value)) != 0);
     }
 
     // Converts an 'ebool' to an 'euint8'.
