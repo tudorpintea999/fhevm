@@ -29,7 +29,7 @@ library Impl {
         uint256 lhs,
         uint256 rhs,
         bool scalar,
-        function(bytes memory, uint32) external view returns (bytes memory) impl
+        function(bytes memory) external view returns (bytes memory) impl
     ) internal view returns (uint256 result) {
         bytes1 scalarByte;
         if (scalar) {
@@ -38,12 +38,11 @@ library Impl {
             scalarByte = 0x00;
         }
         bytes memory input = bytes.concat(bytes32(lhs), bytes32(rhs), scalarByte);
-        uint32 inputLen = uint32(input.length);
 
         bytes memory output;
         // Call the add precompile.
 
-        output = impl(input, inputLen);
+        output = impl(input);
         result = getValue(output);
     }
 
@@ -72,7 +71,7 @@ library Impl {
         uint32 inputLen = 32;
 
         // Call the optimistic require precompile.
-        FheOps(Precompiles.Fheos).req(input, inputLen);
+        FheOps(Precompiles.Fheos).req(input);
     }
 
     function reencrypt(uint256 ciphertext, bytes32 publicKey) internal view returns (bytes memory reencrypted) {
@@ -82,7 +81,7 @@ library Impl {
         uint32 inputLen = 64;
 
         // Call the reencrypt precompile.
-        reencrypted = FheOps(Precompiles.Fheos).reencrypt(bytes.concat(input[0], input[1]), inputLen);
+        reencrypted = FheOps(Precompiles.Fheos).reencrypt(bytes.concat(input[0], input[1]));
 
         return reencrypted;
     }
@@ -94,7 +93,7 @@ library Impl {
         bytes memory output;
 
         // Call the verify precompile.
-        output = FheOps(Precompiles.Fheos).verify(input, inputLen);
+        output = FheOps(Precompiles.Fheos).verify(input);
         result = getValue(output);
     }
 
@@ -105,7 +104,7 @@ library Impl {
         bytes memory output;
 
         // Call the cast precompile.
-        output = FheOps(Precompiles.Fheos).cast(input, inputLen);
+        output = FheOps(Precompiles.Fheos).cast(input);
         result = getValue(output);
     }
 
@@ -127,7 +126,7 @@ library Impl {
         bytes memory output;
 
         // Call the trivialEncrypt precompile.
-        output = FheOps(Precompiles.Fheos).cmux(input, inputLen);
+        output = FheOps(Precompiles.Fheos).cmux(input);
 
         result = getValue(output);
     }
