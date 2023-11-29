@@ -65,7 +65,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint8(0);
         }
-        return euint8.wrap(Impl.and(euint8.unwrap(a), euint8.unwrap(b)));
+        return euint8.wrap(Impl.and(euint8.unwrap(a), euint8.unwrap(b), false));
     }
 
     // Evaluate or(a, b) and return the result.
@@ -76,7 +76,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint8(0);
         }
-        return euint8.wrap(Impl.or(euint8.unwrap(a), euint8.unwrap(b)));
+        return euint8.wrap(Impl.or(euint8.unwrap(a), euint8.unwrap(b), false));
     }
 
     // Evaluate xor(a, b) and return the result.
@@ -87,7 +87,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint8(0);
         }
-        return euint8.wrap(Impl.xor(euint8.unwrap(a), euint8.unwrap(b)));
+        return euint8.wrap(Impl.xor(euint8.unwrap(a), euint8.unwrap(b), false));
     }
 
     // Evaluate shl(a, b) and return the result.
@@ -241,7 +241,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint16(0);
         }
-        return euint16.wrap(Impl.and(euint16.unwrap(asEuint16(a)), euint16.unwrap(b)));
+        return euint16.wrap(Impl.and(euint16.unwrap(asEuint16(a)), euint16.unwrap(b), false));
     }
 
     // Evaluate or(a, b) and return the result.
@@ -252,7 +252,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint16(0);
         }
-        return euint16.wrap(Impl.or(euint16.unwrap(asEuint16(a)), euint16.unwrap(b)));
+        return euint16.wrap(Impl.or(euint16.unwrap(asEuint16(a)), euint16.unwrap(b), false));
     }
 
     // Evaluate xor(a, b) and return the result.
@@ -263,7 +263,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint16(0);
         }
-        return euint16.wrap(Impl.xor(euint16.unwrap(asEuint16(a)), euint16.unwrap(b)));
+        return euint16.wrap(Impl.xor(euint16.unwrap(asEuint16(a)), euint16.unwrap(b), false));
     }
 
     // Evaluate shl(a, b) and return the result.
@@ -417,7 +417,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint32(0);
         }
-        return euint32.wrap(Impl.and(euint32.unwrap(asEuint32(a)), euint32.unwrap(b)));
+        return euint32.wrap(Impl.and(euint32.unwrap(asEuint32(a)), euint32.unwrap(b), false));
     }
 
     // Evaluate or(a, b) and return the result.
@@ -428,7 +428,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint32(0);
         }
-        return euint32.wrap(Impl.or(euint32.unwrap(asEuint32(a)), euint32.unwrap(b)));
+        return euint32.wrap(Impl.or(euint32.unwrap(asEuint32(a)), euint32.unwrap(b), false));
     }
 
     // Evaluate xor(a, b) and return the result.
@@ -439,7 +439,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint32(0);
         }
-        return euint32.wrap(Impl.xor(euint32.unwrap(asEuint32(a)), euint32.unwrap(b)));
+        return euint32.wrap(Impl.xor(euint32.unwrap(asEuint32(a)), euint32.unwrap(b), false));
     }
 
     // Evaluate shl(a, b) and return the result.
@@ -606,7 +606,7 @@ library TFHE {
         if (!isInitialized(a)) {
             a = asEuint8(0);
         }
-        return euint8.wrap(Impl.div(euint8.unwrap(a), uint256(b)));
+        return euint8.wrap(Impl.div(euint8.unwrap(a), uint256(b), true));
     }
 
     // Evaluate shl(a, b) and return the result.
@@ -812,7 +812,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint8(0);
         }
-        return euint16.wrap(Impl.and(euint16.unwrap(a), euint16.unwrap(asEuint16(b))));
+        return euint16.wrap(Impl.and(euint16.unwrap(a), euint16.unwrap(asEuint16(b)), false));
     }
 
     // Evaluate or(a, b) and return the result.
@@ -823,7 +823,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint8(0);
         }
-        return euint16.wrap(Impl.or(euint16.unwrap(a), euint16.unwrap(asEuint16(b))));
+        return euint16.wrap(Impl.or(euint16.unwrap(a), euint16.unwrap(asEuint16(b)), false));
     }
 
     // Evaluate xor(a, b) and return the result.
@@ -834,7 +834,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint8(0);
         }
-        return euint16.wrap(Impl.xor(euint16.unwrap(a), euint16.unwrap(asEuint16(b))));
+        return euint16.wrap(Impl.xor(euint16.unwrap(a), euint16.unwrap(asEuint16(b)), false));
     }
 
     // Evaluate shl(a, b) and return the result.
@@ -988,7 +988,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint16(0);
         }
-        return euint16.wrap(Impl.and(euint16.unwrap(a), euint16.unwrap(b)));
+        return euint16.wrap(Impl.and(euint16.unwrap(a), euint16.unwrap(b), false));
     }
 
     // Evaluate or(a, b) and return the result.
@@ -999,7 +999,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint16(0);
         }
-        return euint16.wrap(Impl.or(euint16.unwrap(a), euint16.unwrap(b)));
+        return euint16.wrap(Impl.or(euint16.unwrap(a), euint16.unwrap(b), false));
     }
 
     // Evaluate xor(a, b) and return the result.
@@ -1010,7 +1010,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint16(0);
         }
-        return euint16.wrap(Impl.xor(euint16.unwrap(a), euint16.unwrap(b)));
+        return euint16.wrap(Impl.xor(euint16.unwrap(a), euint16.unwrap(b), false));
     }
 
     // Evaluate shl(a, b) and return the result.
@@ -1164,7 +1164,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint32(0);
         }
-        return euint32.wrap(Impl.and(euint32.unwrap(asEuint32(a)), euint32.unwrap(b)));
+        return euint32.wrap(Impl.and(euint32.unwrap(asEuint32(a)), euint32.unwrap(b), false));
     }
 
     // Evaluate or(a, b) and return the result.
@@ -1175,7 +1175,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint32(0);
         }
-        return euint32.wrap(Impl.or(euint32.unwrap(asEuint32(a)), euint32.unwrap(b)));
+        return euint32.wrap(Impl.or(euint32.unwrap(asEuint32(a)), euint32.unwrap(b), false));
     }
 
     // Evaluate xor(a, b) and return the result.
@@ -1186,7 +1186,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint32(0);
         }
-        return euint32.wrap(Impl.xor(euint32.unwrap(asEuint32(a)), euint32.unwrap(b)));
+        return euint32.wrap(Impl.xor(euint32.unwrap(asEuint32(a)), euint32.unwrap(b), false));
     }
 
     // Evaluate shl(a, b) and return the result.
@@ -1353,7 +1353,7 @@ library TFHE {
         if (!isInitialized(a)) {
             a = asEuint16(0);
         }
-        return euint16.wrap(Impl.div(euint16.unwrap(a), uint256(b)));
+        return euint16.wrap(Impl.div(euint16.unwrap(a), uint256(b), true));
     }
 
     // Evaluate shl(a, b) and return the result.
@@ -1559,7 +1559,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint8(0);
         }
-        return euint32.wrap(Impl.and(euint32.unwrap(a), euint32.unwrap(asEuint32(b))));
+        return euint32.wrap(Impl.and(euint32.unwrap(a), euint32.unwrap(asEuint32(b)), false));
     }
 
     // Evaluate or(a, b) and return the result.
@@ -1570,7 +1570,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint8(0);
         }
-        return euint32.wrap(Impl.or(euint32.unwrap(a), euint32.unwrap(asEuint32(b))));
+        return euint32.wrap(Impl.or(euint32.unwrap(a), euint32.unwrap(asEuint32(b)), false));
     }
 
     // Evaluate xor(a, b) and return the result.
@@ -1581,7 +1581,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint8(0);
         }
-        return euint32.wrap(Impl.xor(euint32.unwrap(a), euint32.unwrap(asEuint32(b))));
+        return euint32.wrap(Impl.xor(euint32.unwrap(a), euint32.unwrap(asEuint32(b)), false));
     }
 
     // Evaluate shl(a, b) and return the result.
@@ -1735,7 +1735,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint16(0);
         }
-        return euint32.wrap(Impl.and(euint32.unwrap(a), euint32.unwrap(asEuint32(b))));
+        return euint32.wrap(Impl.and(euint32.unwrap(a), euint32.unwrap(asEuint32(b)), false));
     }
 
     // Evaluate or(a, b) and return the result.
@@ -1746,7 +1746,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint16(0);
         }
-        return euint32.wrap(Impl.or(euint32.unwrap(a), euint32.unwrap(asEuint32(b))));
+        return euint32.wrap(Impl.or(euint32.unwrap(a), euint32.unwrap(asEuint32(b)), false));
     }
 
     // Evaluate xor(a, b) and return the result.
@@ -1757,7 +1757,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint16(0);
         }
-        return euint32.wrap(Impl.xor(euint32.unwrap(a), euint32.unwrap(asEuint32(b))));
+        return euint32.wrap(Impl.xor(euint32.unwrap(a), euint32.unwrap(asEuint32(b)), false));
     }
 
     // Evaluate shl(a, b) and return the result.
@@ -1911,7 +1911,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint32(0);
         }
-        return euint32.wrap(Impl.and(euint32.unwrap(a), euint32.unwrap(b)));
+        return euint32.wrap(Impl.and(euint32.unwrap(a), euint32.unwrap(b), false));
     }
 
     // Evaluate or(a, b) and return the result.
@@ -1922,7 +1922,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint32(0);
         }
-        return euint32.wrap(Impl.or(euint32.unwrap(a), euint32.unwrap(b)));
+        return euint32.wrap(Impl.or(euint32.unwrap(a), euint32.unwrap(b), false));
     }
 
     // Evaluate xor(a, b) and return the result.
@@ -1933,7 +1933,7 @@ library TFHE {
         if (!isInitialized(b)) {
             b = asEuint32(0);
         }
-        return euint32.wrap(Impl.xor(euint32.unwrap(a), euint32.unwrap(b)));
+        return euint32.wrap(Impl.xor(euint32.unwrap(a), euint32.unwrap(b), false));
     }
 
     // Evaluate shl(a, b) and return the result.
@@ -2100,7 +2100,7 @@ library TFHE {
         if (!isInitialized(a)) {
             a = asEuint32(0);
         }
-        return euint32.wrap(Impl.div(euint32.unwrap(a), uint256(b)));
+        return euint32.wrap(Impl.div(euint32.unwrap(a), uint256(b), true));
     }
 
     // Evaluate shl(a, b) and return the result.
