@@ -149,53 +149,52 @@ library Impl {
         }
     }
 
-    // =============== Not yet implemented in nitro
-    function and(uint256, uint256) internal view returns (uint256) {
-        return 0;
+    function and(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
+        result = mathHelper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).and);
     }
 
-    function or(uint256, uint256) internal view returns (uint256) {
-        return 0;
+    function or(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
+        result = mathHelper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).or);
     }
 
-    function xor(uint256, uint256) internal view returns (uint256) {
-        return 0;
+    function xor(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
+        result = mathHelper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).xor);
     }
 
-    function div(uint256, uint256) internal view returns (uint256) {
-        return 0;
+    function div(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
+        result = mathHelper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).div);
     }
 
-    function shl(uint256, uint256, bool) internal view returns (uint256) {
-        return 0;
+    function shl(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
+        result = mathHelper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).shl);
     }
 
-    function shr(uint256, uint256, bool) internal view returns (uint256) {
-        return 0;
+    function shr(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
+        result = mathHelper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).shr);
     }
 
-    function eq(uint256, uint256, bool) internal view returns (uint256) {
-        return 0;
+    function eq(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
+        result = mathHelper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).eq);
     }
 
-    function ne(uint256, uint256, bool) internal view returns (uint256) {
-        return 0;
+    function ne(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
+        result = mathHelper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).ne);
     }
 
-    function ge(uint256, uint256, bool) internal view returns (uint256) {
-        return 0;
+    function ge(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
+        result = mathHelper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).gte);
     }
 
-    function gt(uint256, uint256, bool) internal view returns (uint256) {
-        return 0;
+    function gt(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
+        result = mathHelper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).gt);
     }
 
-    function min(uint256, uint256, bool) internal view returns (uint256) {
-        return 0;
+    function min(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
+        result = mathHelper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).min);
     }
 
-    function max(uint256, uint256, bool) internal view returns (uint256) {
-        return 0;
+    function max(uint256 lhs, uint256 rhs, bool scalar) internal view returns (uint256 result) {
+        result = mathHelper(lhs, rhs, scalar, FheOps(Precompiles.Fheos).max);
     }
 
     function neg(uint256) internal view returns (uint256) {
