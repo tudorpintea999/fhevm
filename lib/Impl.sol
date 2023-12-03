@@ -68,7 +68,6 @@ library Impl {
 
     function req(uint256 ciphertext) internal view {
         bytes memory input = bytes.concat(bytes32(ciphertext));
-        uint32 inputLen = 32;
 
         // Call the optimistic require precompile.
         FheOps(Precompiles.Fheos).req(input);
@@ -78,7 +77,6 @@ library Impl {
         bytes32[2] memory input;
         input[0] = bytes32(ciphertext);
         input[1] = publicKey;
-        uint32 inputLen = 64;
 
         // Call the reencrypt precompile.
         reencrypted = FheOps(Precompiles.Fheos).reencrypt(bytes.concat(input[0], input[1]));
@@ -88,7 +86,6 @@ library Impl {
 
     function verify(bytes memory _ciphertextBytes, uint8 _toType) internal view returns (uint256 result) {
         bytes memory input = bytes.concat(_ciphertextBytes, bytes1(_toType));
-        uint32 inputLen = uint32(input.length);
 
         bytes memory output;
 
@@ -99,7 +96,6 @@ library Impl {
 
     function cast(uint256 ciphertext, uint8 toType) internal view returns (uint256 result) {
         bytes memory input = bytes.concat(bytes32(ciphertext), bytes1(toType));
-        uint32 inputLen = uint32(input.length);
 
         bytes memory output;
 
@@ -121,7 +117,6 @@ library Impl {
 
     function cmux(uint256 control, uint256 ifTrue, uint256 ifFalse) internal view returns (uint256 result) {
         bytes memory input = bytes.concat(bytes32(control), bytes32(ifTrue), bytes32(ifFalse));
-        uint32 inputLen = uint32(input.length);
 
         bytes memory output;
 
