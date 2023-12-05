@@ -8,7 +8,7 @@
 # Example usage: ./run_ERC20.sh <private_key> http://host.docker.internal:8545
 
 if [ "$#" -lt 2 ]; then
-    echo "Please give the private key of the main account and optionnaly the node @:port"
+    echo "Please give the private key of the main account and optionally the node @:port"
     echo "Example: `basename "$0"` CB99CAA34343 http://host.docker.internal:8545"
     exit
 fi
