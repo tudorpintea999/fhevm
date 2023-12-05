@@ -175,7 +175,7 @@ npm test
   <summary>Error: insufficient funds</summary>
 <br />
 
-Ensure the faucet command is succesfull.
+Ensure the faucet command is successful.
 
 </details>
 <br />
