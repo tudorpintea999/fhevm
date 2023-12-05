@@ -8,7 +8,7 @@
 # Example usage: ./run_ERC20_ci_test.sh mykey1 ../evmos
 
 if [ "$#" -ne 2 ]; then
-    echo "Please give the key name (e.g., mykey1 or mykey2) and the path to the evmos directory and optionnaly the node @:port"
+    echo "Please give the key name (e.g., mykey1 or mykey2) and the path to the evmos directory and optionally the node @:port"
     echo "Example: `basename "$0"` mykey1 ../evmos"
     exit
 fi
