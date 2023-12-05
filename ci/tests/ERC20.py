@@ -230,7 +230,7 @@ tx = contract.functions.mint(input).transact({
 transaction_hash = tx.hex()
 print('mint transaction hash:', transaction_hash)
 # wait for the transaction to be mined, and get the transaction receipt
-print("waiting for transaction to be mined...")
+print("waiting for the transaction to be mined...")
 transaction_receipt = w3.eth.wait_for_transaction_receipt(transaction_hash)
 print('mint transaction took %s seconds' % (time.time() - start))
 assert transaction_receipt['status'] == 1
